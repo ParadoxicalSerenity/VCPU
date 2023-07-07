@@ -21,11 +21,11 @@ class CPU
     int instruction_register; // Byte
 
     //Flags
-    bool extended_register_flag;
-    bool carry_flag;
+    bool extended_register_flag; //Bit
+    bool carry_flag; //Bit
+    
+    int incrementAddressRegister();
 
     void fetch();
     void decode();
-    void execute();
-    void store();
 };
