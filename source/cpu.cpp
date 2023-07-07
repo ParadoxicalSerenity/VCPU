@@ -22,6 +22,7 @@ void CPU::run(){
     while(isRunning){
      fetch();
      decode();
+     incrementAddressRegister();
      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }}
 
@@ -29,13 +30,18 @@ void CPU::run(){
 void CPU::fetch(){
      instruction_register = memory.access(address);
      std::cout << "Fetch " << instruction_register << " from " << address << std::endl;
-     incrementAddressRegister();
 }
 
 //Figure out what the instruction means.
 void CPU::decode(){
     switch(instruction_register){
         case 0x00:
+            break;
+        case 0x01:
+            LoadValueIntoRegisterA();
+            break;
+        case 0x02:
+            LoadValueIntoRegisterB();
             break;
         case 0xFF:
             extended_register_flag = true;
@@ -52,6 +58,18 @@ void CPU::decode(){
                 break;
         }
     }
+}
+
+void CPU::LoadValueIntoRegisterA(){
+    incrementAddressRegister();
+    register_a = memory.access(address);
+    std::cout << "Loaded " << register_a << " into register A" << std::endl;
+}
+
+void CPU::LoadValueIntoRegisterB(){
+    incrementAddressRegister();
+    register_b = memory.access(address);
+    std::cout << "Loaded " << register_b << " into register B" << std::endl;
 }
 
 int CPU::incrementAddressRegister(){

@@ -1,9 +1,10 @@
 #pragma once
 
-#include <vector>
+#include <array>
+
 class Memory {
     private:
-    std::vector<int> bytes;
+    std::array<int, 0xFFFF> bytes;
     public:
     Memory();
     int access(int address);

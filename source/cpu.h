@@ -23,9 +23,11 @@ class CPU
     //Flags
     bool extended_register_flag; //Bit
     bool carry_flag; //Bit
-    
+
     int incrementAddressRegister();
 
     void fetch();
     void decode();
+    void LoadValueIntoRegisterA();
+    void LoadValueIntoRegisterB();
 };
