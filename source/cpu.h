@@ -7,17 +7,22 @@ class CPU
         CPU(Memory memory);
         void reset();
         void run();
-    private:
-    bool isRunning;
 
+    private:
+
+    bool isRunning;
     Memory memory;
 
-    //CPU Flags and Registers
-    int address;
-    int register_a;
-    int instruction_register;
-    
-    bool extended_register;
+    //Registers
+    int address; //Word
+
+    int register_a; //Byte
+    int register_b; //Byte
+    int instruction_register; // Byte
+
+    //Flags
+    bool extended_register_flag;
+    bool carry_flag;
 
     void fetch();
     void decode();

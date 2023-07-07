@@ -11,6 +11,11 @@ CPU::CPU(Memory memory) {
 
 void CPU::reset(){
     address = 0x0000;
+    register_a = 0x00;
+    register_b = 0x00;
+    instruction_register = 0x00;
+    extended_register_flag = false;
+    carry_flag = false;
 }
 
 void CPU::run(){
@@ -35,11 +40,11 @@ void CPU::decode(){
             break;
         case 0xFF:
             std::cout << "Extended Register\n";
-            extended_register = true;
+            extended_register_flag = true;
             break;
     }
 
-    if (extended_register == true){
+    if (extended_register_flag == true){
         //Advance to next memory location and perform a read and decode that.
     }
     std::cout << "Decode\n";
