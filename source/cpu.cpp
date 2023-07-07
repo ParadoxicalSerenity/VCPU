@@ -43,6 +43,8 @@ void CPU::decode(){
         case 0x02:
             LoadValueIntoRegisterB();
             break;
+        case 0x03:
+            AddNextByte();
         case 0xFF:
             extended_register_flag = true;
             break;
@@ -76,4 +78,28 @@ int CPU::incrementAddressRegister(){
     if (address == 0xFFFF){address == 0x00;}
     address++;
     return address;
+}
+
+//Add next byte to A register
+void CPU::AddNextByte(){
+    incrementAddressRegister();
+    int currentByte = memory.access(address);
+    //Handle Carry
+
+    if (register_a + currentByte > 255) {
+        std::cout << "Carry: ";
+        carry_flag = true;
+        register_a = register_a + currentByte - 0xFF;
+        std::cout << register_a << std::endl;
+    } else {
+        std::cout << "No Carry: ";
+        carry_flag = false;
+        register_a = register_a + currentByte;
+        std::cout << register_a << std::endl;
+    }
+    
+}
+
+void CPU::AddAB(){
+
 }

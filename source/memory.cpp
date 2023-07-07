@@ -9,6 +9,8 @@ Memory::Memory(){
     bytes[3] = 0x55;
     bytes[4] = 0x02;
     bytes[5] = 0xAA;
+    bytes[6] = 0x03;
+    bytes[7] = 0xFF;
 }
 
 int Memory::access(int address){

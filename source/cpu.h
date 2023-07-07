@@ -26,6 +26,10 @@ class CPU
 
     int incrementAddressRegister();
 
+    void AddNextByte();
+
+    void AddAB();
+
     void fetch();
     void decode();
     void LoadValueIntoRegisterA();
